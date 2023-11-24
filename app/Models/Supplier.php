@@ -9,5 +9,15 @@ class Supplier extends Model
 {
     use HasFactory;
     protected $table = 'suppliers';
-    protected $dateFormat = 'd-m-Y';
+    //protected $dateFormat = 'd-m-Y';
+
+    protected $fillable = [
+        'name',
+        'ruc',
+        'address',
+        'phone',
+        'email',
+        'description',
+        'status',
+    ];
 }

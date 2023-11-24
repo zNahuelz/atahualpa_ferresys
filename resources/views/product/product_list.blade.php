@@ -1,10 +1,11 @@
 @extends('shared.main')
 @section('content')
+<title>Ferreteria Atahualpa - Listado de Productos</title>
 <div class="card text-center mt-3 border-dark">
     <div class="card-body">
         <div class="row">
             <div class="col">
-                @if(empty($products))
+                @if(sizeof($products) > 0)
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -20,7 +21,7 @@
                     <tbody>
                         @foreach ($products as $p)
                         <tr>
-                            <th>{{$p->id}}</th>
+                            <td>{{$p->id}}</td>
                             <td class="fw-normal fs-6">{{$p->name}}</td>
                         </tr>
                         @endforeach

@@ -14,8 +14,8 @@
                     <a class="nav-link dropdown-toggle text-dark px-2 link-body-emphasis" href="#"
                         data-bs-toggle="dropdown" aria-expanded="false">Clientes</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Listado</a></li>
-                        <li><a class="dropdown-item" href="#">Nuevo Cliente</a></li>
+                        <li><a class="dropdown-item" href="/dashboard/c/list">Listado</a></li>
+                        <li><a class="dropdown-item" href="/dashboard/c/new">Nuevo Cliente</a></li>
                     </ul>
                 </li>
 
@@ -32,8 +32,8 @@
                     <a class="nav-link dropdown-toggle text-dark px-2 link-body-emphasis" href="#"
                         data-bs-toggle="dropdown" aria-expanded="false">Proveedores</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Listado</a></li>
-                        <li><a class="dropdown-item" href="#">Nuevo Proveedor</a></li>
+                        <li><a class="dropdown-item" href="/dashboard/s/list">Listado</a></li>
+                        <li><a class="dropdown-item" href="/dashboard/s/new">Nuevo Proveedor</a></li>
                     </ul>
                 </li>
 
@@ -55,7 +55,7 @@
                       </svg>
                 </a>
                 <ul class="dropdown-menu text-small" style="">
-                    <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                    <li><a class="dropdown-item" href="/dashboard/mp">Mi Perfil</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

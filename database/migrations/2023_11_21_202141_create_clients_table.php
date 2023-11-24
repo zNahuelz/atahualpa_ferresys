@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('surname',100);
             $table->string('dni',15)->unique();
             $table->string('address',255);
-            $table->string('email',100)->nullable();
-            $table->string('phone',11)->default('999999999');
+            $table->string('email',100)->default('email@dominio.com')->nullable();
+            $table->string('phone',11)->default('999999999')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

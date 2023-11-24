@@ -39,4 +39,8 @@ class UserController extends Controller
         }
         return redirect('/dashboard');
     }
+
+    public function accountDetails(){
+        return view('shared.profile');
+    }
 }

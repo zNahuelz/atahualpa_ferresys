@@ -9,6 +9,6 @@ class ProductController extends Controller
 {
     public function listProducts(){
         $products = Product::all();
-        return view('products.product_list',['products' => $products]);
+        return view('product.product_list',['products' => $products]);
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitTypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AuthMiddleware;
@@ -44,3 +46,25 @@ Route::get('/dashboard/ut/list', [UnitTypeController::class, 'listUnitTypes'])->
 Route::post('/dashboard/ut/new', [UnitTypeController::class, 'createUnitType'])->middleware(DashboardMiddleware::class);
 
 Route::get('/dashboard/p/list', [ProductController::class, 'listProducts'])->middleware(DashboardMiddleware::class);
+
+Route::get('/dashboard/s/list', [SupplierController::class, 'listSuppliers'])->middleware(DashboardMiddleware::class);
+
+Route::get('/dashboard/s/new', function(){
+    return view ('supplier.new_supplier');
+})->middleware(DashboardMiddleware::class);
+
+Route::post('/dashboard/s/new', [SupplierController::class, 'createSupplier'])->middleware(DashboardMiddleware::class);
+
+Route::get('/dashboard/s/edit/{supplier}', [SupplierController::class, 'editSupplier'])->middleware(DashboardMiddleware::class);
+
+Route::put('/dashboard/s/edit/{supplier}', [SupplierController::class, 'updateSupplier'])->middleware(DashboardMiddleware::class)->name('supplier.update');
+
+Route::get('/dashboard/c/list', [ClientController::class, 'listClients'])->middleware(DashboardMiddleware::class);
+
+Route::get('/dashboard/c/new', function(){
+    return view('client.new_client');
+})->middleware(DashboardMiddleware::class);
+
+Route::post('/dashboard/c/new', [ClientController::class, 'createClient'])->middleware(DashboardMiddleware::class);
+
+Route::get('/dashboard/mp', [UserController::class, 'accountDetails'])->middleware(DashboardMiddleware::class);

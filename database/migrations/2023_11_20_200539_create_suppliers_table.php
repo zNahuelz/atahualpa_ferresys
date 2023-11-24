@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('ruc',11)->unique();
             $table->string('address',150);
             $table->string('phone',11);
-            $table->string('email',100)->nullable()->default('email@dominio.com');
-            $table->string('description',150)->default('PROVEEDOR GENERAL');
+            $table->string('email',100)->nullable('email@dominio.com');
+            $table->string('description',150)->nullable('PROVEEDOR GENERAL');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

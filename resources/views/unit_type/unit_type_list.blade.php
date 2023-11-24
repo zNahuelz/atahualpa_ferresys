@@ -1,5 +1,6 @@
 @extends('shared.main')
 @section('content')
+<title>Ferreteria Atahualpa - Gestión de Tipos de Unidades</title>
     <div class="card text-center mt-3 border-dark">
         <div class="card-body">
             <div class="row">
