@@ -33,7 +33,11 @@ class ClientController extends Controller
         }
 
         $client = Client::create($incomingFields);
-        return redirect('/dashboard/c/list');
+        return redirect('/dashboard/c/list')->with([
+            'alert' => 'Cliente: '. $client->name .' '.$client->surname.' registrado con exito!',
+            'alertColor' => 'alert-primary',
+            'alertIcon' => 'info'
+        ]);
     }
 
     public function listClients(){

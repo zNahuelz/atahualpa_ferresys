@@ -17,6 +17,10 @@ class UnitTypeController extends Controller
             'name' => ['required','min:1','max:50']
         ]);
         $unitType = UnitType::create($incomingFields);
-        return redirect('/dashboard/ut/list');
+        return redirect('/dashboard/ut/list')->with([
+            'alert' => 'Tipo de unidad: '. $unitType->name .' registrada con exito!',
+            'alertColor' => 'alert-primary',
+            'alertIcon' => 'info'
+        ]);
     }
 }

@@ -3,6 +3,11 @@
 <title>Ferreteria Atahualpa - Listado de Productos</title>
 <div class="card text-center mt-3 border-dark">
     <div class="card-body">
+        <div class="row text-end mb-3">
+            <div class="col">
+                <a class="btn btn-outline-primary" href="/dashboard/p/new">Nuevo Producto</a>
+            </div>
+        </div>
         <div class="row">
             <div class="col">
                 @if(sizeof($products) > 0)
@@ -16,6 +21,7 @@
                             <th>Unidad</th>
                             <th>Precio Venta</th>
                             <th>Fecha Ingreso</th>
+                            <th>Herramientas</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,6 +29,21 @@
                         <tr>
                             <td>{{$p->id}}</td>
                             <td class="fw-normal fs-6">{{$p->name}}</td>
+                            @if ($p->description == '')
+                                <td>N/A</td>
+                            @else
+                                <td class="fw-normal fs-6">{{$p->description}}</td>
+                            @endif
+                            <td class="fw-normal fs-6">{{$p->stock}}</td>
+                            <td class="fw-normal fs-6">{{$p->unitType->name}}</td>
+                            <td class="fw-normal fs-6">S./{{$p->sell_price}}</td>
+                            <td class="fw-normal fs-6">{{$p->created_at->format('d M Y - h:i A')}}</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="/dashboard/p/edit/{{$p->id}}" class="btn btn-sm btn-warning">EDITAR</a>
+                                    <a href="/dashboard/p/details/{{$p->id}}" class="btn btn-sm btn-primary">DETALLES</a>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

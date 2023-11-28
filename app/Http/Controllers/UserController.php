@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -37,7 +38,11 @@ class UserController extends Controller
         if(auth()->attempt(['email' => $incomingFields['email'], 'password' => $incomingFields['password']])){
             $request->session()->regenerate();
         }
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with([
+            'alert' => '¡Bienvenido de nuevo! '. Auth::user()->name . ' '. Auth::user()->surname,
+            'alertColor' => 'alert-warning',
+            'alertIcon' => 'info'
+        ]);
     }
 
     public function accountDetails(){

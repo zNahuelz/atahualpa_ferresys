@@ -47,6 +47,10 @@ Route::post('/dashboard/ut/new', [UnitTypeController::class, 'createUnitType'])-
 
 Route::get('/dashboard/p/list', [ProductController::class, 'listProducts'])->middleware(DashboardMiddleware::class);
 
+Route::get('dashboard/p/new', [ProductController::class, 'getCreateProduct'])->middleware(DashboardMiddleware::class);
+
+Route::post('/dashboard/p/new', [ProductController::class, 'createProduct'])->middleware(DashboardMiddleware::class);
+
 Route::get('/dashboard/s/list', [SupplierController::class, 'listSuppliers'])->middleware(DashboardMiddleware::class);
 
 Route::get('/dashboard/s/new', function(){
@@ -57,7 +61,7 @@ Route::post('/dashboard/s/new', [SupplierController::class, 'createSupplier'])->
 
 Route::get('/dashboard/s/edit/{supplier}', [SupplierController::class, 'editSupplier'])->middleware(DashboardMiddleware::class);
 
-Route::put('/dashboard/s/edit/{supplier}', [SupplierController::class, 'updateSupplier'])->middleware(DashboardMiddleware::class)->name('supplier.update');
+Route::put('/dashboard/s/edit/{id}', [SupplierController::class, 'updateSupplier'])->middleware(DashboardMiddleware::class);
 
 Route::get('/dashboard/c/list', [ClientController::class, 'listClients'])->middleware(DashboardMiddleware::class);
 

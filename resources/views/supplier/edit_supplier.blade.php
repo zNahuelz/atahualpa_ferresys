@@ -12,9 +12,9 @@
             </div>
         @endif
         </div>
-        <form action="{{route('supplier.update',$supplier->id)}}" class="form" method="PUT"> <!--Formulario que no funciona....--->
+        <form action="/dashboard/s/edit/{{$supplier->id}}" class="form" method="POST">
             @csrf
-            @method('PUT')
+            @method("PUT")
         <div class="row">
             <h3 class="fw-light">Editar Proveedor</h3>
             <div class="col mt-3">
