@@ -9,7 +9,13 @@ use Illuminate\Validation\Rule;
 
 class SupplierController extends Controller
 {
-    public function createSupplier(Request $request){
+    public function getCreateSupplier()
+    {
+        return view('supplier.new_supplier');
+    }
+
+    public function createSupplier(Request $request)
+    {
         $messages = [
             'name' => 'El campo nombre es obligatorio.',
             'ruc' => 'El campo RUC debe tener un máximo de 11 carácteres y comenzar por 10 o 20.',
@@ -27,11 +33,13 @@ class SupplierController extends Controller
             'email' => ['nullable','min:1','max:100']
         ],$messages);
 
-        if($request['email'] == null){
+        if($request['email'] == null)
+        {
             $incomingFields['email'] = 'email@dominio.com';
         }
 
-        if($request['description'] == null){
+        if($request['description'] == null)
+        {
             $incomingFields['description'] = 'PROVEEDOR GENERAL';
         }
 
@@ -43,12 +51,14 @@ class SupplierController extends Controller
         ]);
     }
 
-    public function listSuppliers(){
+    public function listSuppliers()
+    {
         $suppliers = Supplier::all();
         return view('supplier.supplier_list',['suppliers' => $suppliers]);
     }
 
-    public function editSupplier($id){
+    public function editSupplier($id)
+    {
         $supplier = Supplier::find($id);
         if($supplier == null){
             return redirect('/dashboard/s/list');
@@ -56,7 +66,8 @@ class SupplierController extends Controller
         return view('supplier.edit_supplier',compact('supplier'));
     }
 
-    public function updateSupplier(Request $request, $id){
+    public function updateSupplier(Request $request, $id)
+    {
         $request->validate([
             'name' => ['required','min:5','max:150'],
             'ruc' => ['required','min:11','max:11',Rule::unique('suppliers','ruc')->ignore($request->id)],
@@ -67,7 +78,8 @@ class SupplierController extends Controller
         ]);
 
         $supplier = Supplier::find($request->id);
-        if($supplier != null){
+        if($supplier != null)
+        {
             $supplier->update($request->all());
             return redirect('/dashboard/s/list')->with([
                 'alert' => 'Proveedor: '. $supplier->name .' actualizado con exito!',

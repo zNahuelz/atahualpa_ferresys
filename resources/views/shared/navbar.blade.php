@@ -42,6 +42,7 @@
                         data-bs-toggle="dropdown" aria-expanded="false">Gestión</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/dashboard/ut/list">Tipo Unidades</a></li>
+                        <li><a class="dropdown-item" href="/dashboard/ua/list">Usuarios</a></li>
                     </ul>
                 </li>
             </ul>

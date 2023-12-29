@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 class DashboardMiddleware
 {
     /**
-     * Handle an incoming request.
      *
+     * Comprueba que la solicitud sea de un usuario con sesión iniciada. Caso contrario redigire a login /
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response

@@ -40,8 +40,8 @@
                             <td class="fw-normal fs-6">{{$p->created_at->format('d M Y - h:i A')}}</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="/dashboard/p/edit/{{$p->id}}" class="btn btn-sm btn-warning">EDITAR</a>
-                                    <a href="/dashboard/p/details/{{$p->id}}" class="btn btn-sm btn-primary">DETALLES</a>
+                                    <a href="/dashboard/p/edit/{{$p->id}}" class="btn btn-sm btn-warning bg-gradient fw-bold">EDITAR</a>
+                                    <a href="/dashboard/p/details/{{$p->id}}" class="btn btn-sm btn-primary bg-gradient fw-bold">DETALLES</a>
                                 </div>
                             </td>
                         </tr>

@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 
 class UnitTypeController extends Controller
 {
-    public function listUnitTypes(){
+    public function listUnitTypes()
+    {
         $unitTypes = UnitType::all();
         return view('unit_type.unit_type_list',['unitTypes' => $unitTypes]);
     }
 
-    public function createUnitType(Request $request){
+    public function createUnitType(Request $request)
+    {
         $incomingFields = $request->validate([
             'name' => ['required','min:1','max:50']
         ]);

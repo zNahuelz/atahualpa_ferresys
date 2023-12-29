@@ -9,7 +9,8 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         $incomingFields = $request->validate([
             'name' => ['required','min:3','max:80'],
             'surname' => ['required','min:3','max:80'],
@@ -24,28 +25,34 @@ class UserController extends Controller
         return redirect('/dashboard');
     }
 
-    public function logout(){
+    public function logout()
+    {
         auth()->logout();
         return redirect('/');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $image = 'algo';
         $incomingFields = $request->validate([
             'email' => 'required',
             'password' => 'required'
         ]);
-        if(auth()->attempt(['email' => $incomingFields['email'], 'password' => $incomingFields['password']])){
+
+        if(auth()->attempt(['email' => $incomingFields['email'], 'password' => $incomingFields['password']]))
+        {
             $request->session()->regenerate();
+            return redirect('/dashboard')->with([
+                'alert' => '¡Bienvenido de nuevo! '. Auth::user()->name . ' '. Auth::user()->surname,
+                'alertColor' => 'alert-warning',
+                'alertIcon' => 'info'
+            ]);
         }
-        return redirect('/dashboard')->with([
-            'alert' => '¡Bienvenido de nuevo! '. Auth::user()->name . ' '. Auth::user()->surname,
-            'alertColor' => 'alert-warning',
-            'alertIcon' => 'info'
-        ]);
+        return back()->withErrors(['error' => 'Las credenciales proporcionadas no coinciden en nuestros registros.']);
     }
 
-    public function accountDetails(){
+    public function accountDetails()
+    {
         return view('shared.profile');
     }
 }

@@ -8,7 +8,13 @@ use Illuminate\Validation\Rule;
 
 class ClientController extends Controller
 {
-    public function createClient(Request $request){
+    public function getCreateClient()
+    {
+        return view('client.new_client');
+    }
+
+    public function createClient(Request $request)
+    {
         $messages = [
             'name' => 'El campo nombre es obligatorio.',
             'surname' => 'El campo apellido es obligatorio.',
@@ -25,10 +31,12 @@ class ClientController extends Controller
             'email' => ['nullable','min:1','max:100'],
             'phone' => ['nullable','min:9','max:9']
         ],$messages);
-        if($incomingFields['email'] == null){
+        if($incomingFields['email'] == null)
+        {
             $incomingFields['email'] = 'email@dominio.com';
         }
-        if($incomingFields['phone'] == null){
+        if($incomingFields['phone'] == null)
+        {
             $incomingFields['phone'] = '999999999';
         }
 
@@ -40,10 +48,9 @@ class ClientController extends Controller
         ]);
     }
 
-    public function listClients(){
+    public function listClients()
+    {
         $clients = Client::all();
         return view('client.client_list',['clients' => $clients]);
     }
-
-
 }

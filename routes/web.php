@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
@@ -21,54 +22,89 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
+*   Rutas para inicio de sesión, registro y dashboard.
+*/
 Route::get('/', function () {
     return view('login');
 })->middleware(AuthMiddleware::class);
 
 
-Route::get('/dashboard',function(){
+Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(DashboardMiddleware::class);
 
-Route::get('/register', function(){
+Route::get('/register', function () {
     return view('register');
 })->middleware(AuthMiddleware::class);
 
 
 Route::post('/logout', [UserController::class, 'logout']);
 
-Route::post('/register',[UserController::class, 'register']);
+Route::post('/register', [UserController::class, 'register']);
 
 Route::post('/login', [UserController::class, 'login']);
 
-Route::get('/dashboard/ut/list', [UnitTypeController::class, 'listUnitTypes'])->middleware(DashboardMiddleware::class);
+/*
+*   Grupo de rutas para tipo de unidad.
+*/
+Route::group([
+    'middleware' => DashboardMiddleware::class,
+    'prefix' => '/dashboard/ut'
+], function ($router) {
+    Route::get('/list', [UnitTypeController::class, 'listUnitTypes']);
+    Route::post('/new', [UnitTypeController::class, 'createUnitType']);
+});
 
-Route::post('/dashboard/ut/new', [UnitTypeController::class, 'createUnitType'])->middleware(DashboardMiddleware::class);
+/*
+*   Grupo de rutas para productos.
+*/
+Route::group([
+    'middleware' => DashboardMiddleware::class,
+    'prefix' => '/dashboard/p'
+], function ($router) {
+    Route::get('/list', [ProductController::class, 'listProducts']);
+    Route::get('/new', [ProductController::class, 'getCreateProduct']);
+    Route::post('/new', [ProductController::class, 'createProduct']);
+});
 
-Route::get('/dashboard/p/list', [ProductController::class, 'listProducts'])->middleware(DashboardMiddleware::class);
+/*
+*   Grupo de rutas para proveedores.
+*/
+Route::group([
+    'middleware' => DashboardMiddleware::class,
+    'prefix' => '/dashboard/s'
+], function ($router) {
+    Route::get('/list', [SupplierController::class, 'listSuppliers']);
+    Route::get('/new', [SupplierController::class, 'getCreateSupplier']);
+    Route::post('/new', [SupplierController::class, 'createSupplier']);
+    Route::get('/edit/{supplier}', [SupplierController::class, 'editSupplier']);
+    Route::put('/edit/{id}', [SupplierController::class, 'updateSupplier']);
+});
 
-Route::get('dashboard/p/new', [ProductController::class, 'getCreateProduct'])->middleware(DashboardMiddleware::class);
+/*
+*   Grupo de rutas para clientes.
+*/
+Route::group([
+    'middleware' => DashboardMiddleware::class,
+    'prefix' => '/dashboard/c'
+], function ($router) {
+    Route::get('/list', [ClientController::class, 'listClients']);
+    Route::get('/new', [ClientController::class, 'getCreateClient']);
+    Route::post('/new', [ClientController::class, 'createClient']);
+});
 
-Route::post('/dashboard/p/new', [ProductController::class, 'createProduct'])->middleware(DashboardMiddleware::class);
-
-Route::get('/dashboard/s/list', [SupplierController::class, 'listSuppliers'])->middleware(DashboardMiddleware::class);
-
-Route::get('/dashboard/s/new', function(){
-    return view ('supplier.new_supplier');
-})->middleware(DashboardMiddleware::class);
-
-Route::post('/dashboard/s/new', [SupplierController::class, 'createSupplier'])->middleware(DashboardMiddleware::class);
-
-Route::get('/dashboard/s/edit/{supplier}', [SupplierController::class, 'editSupplier'])->middleware(DashboardMiddleware::class);
-
-Route::put('/dashboard/s/edit/{id}', [SupplierController::class, 'updateSupplier'])->middleware(DashboardMiddleware::class);
-
-Route::get('/dashboard/c/list', [ClientController::class, 'listClients'])->middleware(DashboardMiddleware::class);
-
-Route::get('/dashboard/c/new', function(){
-    return view('client.new_client');
-})->middleware(DashboardMiddleware::class);
-
-Route::post('/dashboard/c/new', [ClientController::class, 'createClient'])->middleware(DashboardMiddleware::class);
-
+//Ruta para "Mi Cuenta"
 Route::get('/dashboard/mp', [UserController::class, 'accountDetails'])->middleware(DashboardMiddleware::class);
+
+/*
+*  Grupo de rutas para gestión de cuentas.
+*/
+Route::group([
+    'middleware' => DashboardMiddleware::class,
+    'prefix' => '/dashboard/ua'
+], function ($router){
+    Route::get('/list', [AccountController::class, 'listAccounts']);
+    Route::get('/register', [AccountController::class, 'getRegister']);
+    Route::post('/register', [AccountController::class, 'register']);
+});

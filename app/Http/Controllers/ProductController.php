@@ -67,5 +67,4 @@ class ProductController extends Controller
         $products = Product::all();
         return view('product.product_list',['products' => $products]);
     }
-
 }

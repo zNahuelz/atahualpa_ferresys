@@ -5,7 +5,7 @@
     <div class="card-body">
         <div class="row">
             @if($errors->any())
-                <div class="col alert alert-danger" role="alert">
+                <div class="col-4 alert alert-danger" role="alert">
                     @foreach ($errors->all() as $error)
                         - {{ $error }} <br />
                     @endforeach
