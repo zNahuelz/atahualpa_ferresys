@@ -82,7 +82,7 @@
                         <label for="type" class="form-label">Tipo de Cuenta</label>
                         <select class="form-select" name="type">
                             <option value="1" selected>VENDEDOR</option>
-                            <option value="2">INVITADO</option>
+                            <option value="2">OBSERVADOR</option>
                             <option value="0">ADMINISTRADOR</option>
                         </select>
                         @error('type')

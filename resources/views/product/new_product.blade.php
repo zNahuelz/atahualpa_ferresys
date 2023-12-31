@@ -23,7 +23,7 @@
                 </div>
                 <div class="mb-3 text-start">
                     <label for="description" class="form-label">Descripción del Producto</label>
-                    <textarea class="form-control" id="description" rows="4" placeholder="Estas son barras de construcción ASTM A615 con Grado 60, rectas de sección circular, con resaltes Hi-bond de alta adherencia con el concreto..." form="mainForm"></textarea>
+                    <textarea class="form-control" name="description" rows="4" placeholder="Estas son barras de construcción ASTM A615 con Grado 60, rectas de sección circular, con resaltes Hi-bond de alta adherencia con el concreto..."></textarea>
                 </div>
                 <div class="mb-3 text-start">
                     <label for="buy_price" class="form-label">Precio de Compra</label>

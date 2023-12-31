@@ -49,7 +49,7 @@
                 </div>
                 <div class="mb-3 text-start">
                     <label for="name" class="form-label">Descripción del Proveedor</label>
-                    <textarea class="form-control" id="description" rows="4" placeholder="Comercialización de productos de acero, como barras de refuerzo, alambrón, perfiles y estructuras metálicas...">{{$supplier->description}}</textarea>
+                    <textarea class="form-control" name="description" rows="4" placeholder="Comercialización de productos de acero, como barras de refuerzo, alambrón, perfiles y estructuras metálicas...">{{$supplier->description}}</textarea>
                 </div>
             </div>
         </div>

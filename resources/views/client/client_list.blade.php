@@ -21,6 +21,7 @@
                             <th>Teléfono</th>
                             <th>Fecha Registro</th>
                             <th>Estado</th>
+                            <th>Herramientas</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +38,12 @@
                             @else
                             <td class="fw-bold fs-6 text-danger">INACTIVO</td>
                             @endif
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="/dashboard/c/edit/{{$c->id}}" class="btn btn-sm btn-warning bg-gradient fw-bold">EDITAR</a>
+                                    <a href="/dashboard/c/details/{{$c->id}}" class="btn btn-sm btn-primary bg-gradient fw-bold">DETALLES</a>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

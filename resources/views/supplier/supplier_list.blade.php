@@ -36,7 +36,12 @@
                             <td class="fw-bold fs-6 text-danger">INACTIVO</td>
                             @endif
                             <td class="fw-normal fs-6">{{$s->created_at->format('d M Y - h:i A')}}</td>
-                            <td><a href="/dashboard/s/edit/{{$s->id}}" class="btn btn-sm btn-outline-warning">EDITAR</a></td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="/dashboard/s/edit/{{$s->id}}" class="btn btn-sm btn-warning bg-gradient fw-bold">EDITAR</a>
+                                    <a href="/dashboard/s/details/{{$s->id}}" class="btn btn-sm btn-primary bg-gradient fw-bold">DETALLES</a>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -22,6 +22,11 @@ class Supplier extends Model
         'status',
     ];
 
+    protected $attributes = [
+        'description' => 'PROVEEDOR GENERAL',
+        'email' => 'email@dominio.com'
+    ];
+
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);

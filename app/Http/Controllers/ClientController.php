@@ -28,17 +28,9 @@ class ClientController extends Controller
             'surname' => ['required','min:1','max:100'],
             'dni' => ['required','min:8','max:15',Rule::unique('clients','dni')],
             'address' => ['required','min:1','max:255'],
-            'email' => ['nullable','min:1','max:100'],
-            'phone' => ['nullable','min:9','max:9']
+            'email' => ['nullable','max:100'],
+            'phone' => ['nullable','max:9']
         ],$messages);
-        if($incomingFields['email'] == null)
-        {
-            $incomingFields['email'] = 'email@dominio.com';
-        }
-        if($incomingFields['phone'] == null)
-        {
-            $incomingFields['phone'] = '999999999';
-        }
 
         $client = Client::create($incomingFields);
         return redirect('/dashboard/c/list')->with([
@@ -52,5 +44,21 @@ class ClientController extends Controller
     {
         $clients = Client::all();
         return view('client.client_list',['clients' => $clients]);
+    }
+
+    public function clientDetails($id)
+    {
+        $client = Client::find($id);
+        if($client)
+        {
+            return view('client.client_detail', ['c' => $client]);
+        }
+        else {
+            return redirect('/dashboard/c/list')->with([
+                'alert' => 'Error! El detalle del cliente de código: ' . $id . ' no esta disponible actualmente o el cliente no existe.',
+                'alertColor' => 'alert-danger',
+                'alertIcon' => 'error'
+            ]);
+        }
     }
 }

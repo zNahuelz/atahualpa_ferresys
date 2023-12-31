@@ -10,7 +10,6 @@ class Product extends Model
 {
     use HasFactory;
     protected $table = 'products';
-    //protected $dateFormat = 'd-m-Y';
 
     protected $fillable = [
         'name',
@@ -21,6 +20,10 @@ class Product extends Model
         'supplier_id',
         'unit_type',
         'status'
+    ];
+
+    protected $attributes = [
+        'description' => 'N/A'
     ];
 
     public function unitType(): BelongsTo

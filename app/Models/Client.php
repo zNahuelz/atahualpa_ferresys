@@ -20,4 +20,9 @@ class Client extends Model
         'phone',
         'status',
     ];
+
+    protected $attributes = [
+        'phone' => '999999999',
+        'email' => 'email@dominio.com'
+    ];
 }

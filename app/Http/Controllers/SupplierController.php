@@ -25,23 +25,13 @@ class SupplierController extends Controller
         ];
 
         $incomingFields = $request->validate([
-            'name' => ['required','min:5','max:150'],
+            'name' => ['required','min:4','max:150'],
             'ruc' => ['required','min:11','max:11',Rule::unique('suppliers','ruc')],
             'address' => ['required','min:5','max:150'],
             'phone' => ['required','min:6','max:11'],
-            'description' => ['nullable','min:1','max:150'],
-            'email' => ['nullable','min:1','max:100']
+            'description' => ['nullable','max:150'],
+            'email' => ['nullable','max:100']
         ],$messages);
-
-        if($request['email'] == null)
-        {
-            $incomingFields['email'] = 'email@dominio.com';
-        }
-
-        if($request['description'] == null)
-        {
-            $incomingFields['description'] = 'PROVEEDOR GENERAL';
-        }
 
         $supplier = Supplier::create($incomingFields);
         return redirect('/dashboard/s/list')->with([
@@ -69,7 +59,7 @@ class SupplierController extends Controller
     public function updateSupplier(Request $request, $id)
     {
         $request->validate([
-            'name' => ['required','min:5','max:150'],
+            'name' => ['required','min:4','max:150'],
             'ruc' => ['required','min:11','max:11',Rule::unique('suppliers','ruc')->ignore($request->id)],
             'address' => ['required','min:5','max:150'],
             'phone' => ['required','min:6','max:11'],
@@ -90,6 +80,22 @@ class SupplierController extends Controller
         else{
             return redirect('/dashboard/s/list')->with([
                 'alert' => 'Ups! Imposible actualizar el proveedor: '. $supplier->name,
+                'alertColor' => 'alert-danger',
+                'alertIcon' => 'error'
+            ]);
+        }
+    }
+
+    public function supplierDetails($id)
+    {
+        $supplier = Supplier::find($id);
+        if($supplier)
+        {
+            return view('supplier.supplier_detail', ['s' => $supplier]);
+        }
+        else {
+            return redirect('/dashboard/s/list')->with([
+                'alert' => 'Error! El detalle del proveedor de código: ' . $id . ' no esta disponible actualmente o el proveedor no existe.',
                 'alertColor' => 'alert-danger',
                 'alertIcon' => 'error'
             ]);

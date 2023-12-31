@@ -19,29 +19,29 @@
             <div class="col mt-3">
                 <div class="mb-3 text-start">
                     <label for="name" class="form-label">Nombres</label>
-                    <input type="text" name="name" placeholder="Pedrito" class="form-control">
+                    <input type="text" name="name" placeholder="Pedrito" class="form-control" minlength="1" maxlength="100">
                 </div>
                 <div class="mb-3 text-start">
                     <label for="surname" class="form-label">Apellidos</label>
-                    <input type="text" name="surname" placeholder="Fernandez" class="form-control">
+                    <input type="text" name="surname" placeholder="Fernandez" class="form-control" minlength="1" maxlength="100">
                 </div>
                 <div class="mb-3 text-start">
                     <label for="dni" class="form-label">DNI</label>
-                    <input type="text" name="dni" placeholder="07866543" class="form-control">
+                    <input type="text" name="dni" placeholder="07866543" class="form-control" minlength="8" maxlength="15">
                 </div>
             </div>
             <div class="col mt-3">
                 <div class="mb-3 text-start">
                     <label for="email" class="form-label">E-Mail</label>
-                    <input type="email" name="email" placeholder="email@dominio.com" class="form-control">
+                    <input type="email" name="email" placeholder="email@dominio.com" class="form-control" maxlength="100">
                 </div>
                 <div class="mb-3 text-start">
                     <label for="address" class="form-label">Dirección</label>
-                    <input type="text" name="address" placeholder="Av. Globo Terraqueo 404" class="form-control">
+                    <input type="text" name="address" placeholder="Av. Globo Terraqueo 404" class="form-control" maxlength="255">
                 </div>
                 <div class="mb-3 text-start">
                     <label for="phone" class="form-label">Teléfono</label>
-                    <input type="text" name="phone" placeholder="995615443" class="form-control">
+                    <input type="text" name="phone" placeholder="995615443" class="form-control" maxlength="9">
                 </div>
             </div>
         </div>

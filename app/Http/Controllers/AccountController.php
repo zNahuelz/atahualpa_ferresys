@@ -23,8 +23,8 @@ class AccountController extends Controller
     {
         $accountType = 'N/A';
         $incomingFields = $request->validate([
-            'name' => ['required','min:3','max:80','regex:/^[a-zA-Z]{3,80}$/'],
-            'surname' => ['required','min:3','max:80','regex:/^[a-zA-Z]{3,80}$/'],
+            'name' => ['required','min:3','max:80','regex:/^[a-zA-Z\s]{3,80}$/'],
+            'surname' => ['required','min:3','max:80','regex:/^[a-zA-Z\s]{3,80}$/'],
             'password' => ['required','min:5','max:30','regex:/^.{5,30}$/'],
             'dni' => ['required','min:8','max:15','regex:/^[0-9]{8}$/',Rule::unique('users','dni')],
             'email' => ['required','max:100','regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],
