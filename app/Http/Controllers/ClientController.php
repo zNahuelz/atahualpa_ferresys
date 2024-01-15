@@ -40,6 +40,47 @@ class ClientController extends Controller
         ]);
     }
 
+    public function editClient($id)
+    {
+        $client = Client::find($id);
+        if($client == null){
+            return redirect('/dashboard/c/list');
+        }
+        return view('client.edit_client',compact('client'));
+    }
+
+    public function updateClient(Request $request, $id)
+    {
+        $request->validate([
+            'name' => ['required','min:1','max:100'],
+            'surname' => ['required','min:1','max:100'],
+            'dni' => ['required','min:8','max:15',Rule::unique('clients','dni')->ignore($request->id)],
+            'address' => ['required','min:1','max:255'],
+            'email' => ['nullable','max:100'],
+            'phone' => ['nullable','max:9']
+        ]);
+
+        $client = Client::find($request->id);
+
+        if($client != null)
+        {
+            $client->update($request->all());
+            return redirect('/dashboard/c/list')->with([
+                'alert' => 'Cliente: '. $client->name .' '.$client->surname.' actualizado con exito!',
+                'alertColor' => 'alert-success',
+                'alertIcon' => 'check'
+            ]);
+        }
+        else
+        {
+            return redirect('/dashboard/c/list')->with([
+                'alert' => 'Ups! Imposible actualizar el client: '.$client->name .' '.$client->surname,
+                'alertColor' => 'alert-danger',
+                'alertIcon' => 'error'
+            ]);
+        }
+    }
+
     public function listClients()
     {
         $clients = Client::all();

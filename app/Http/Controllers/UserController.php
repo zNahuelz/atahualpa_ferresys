@@ -51,6 +51,24 @@ class UserController extends Controller
         return back()->withErrors(['error' => 'Las credenciales proporcionadas no coinciden en nuestros registros.']);
     }
 
+    public function updateUser(Request $request, $id)
+    {
+        $request->validate([
+            "email" => ['max:100','regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',Rule::unique('users','email')->ignore($request->id)],
+            "phone" => ['min:9','max:9','regex:/^[0-9]{9}$/']
+        ]);
+        $user = User::find($id);
+        if($user)
+        {
+            $user->update($request->all());
+            return redirect('/dashboard/')->with([
+                'alert' => 'Datos de cuenta actualizados correctamente! EMAIL: '.$request['email'].' '.'TELÉFONO: '.$request['phone'],
+                'alertColor' => 'alert-success',
+                'alertIcon' => 'check'
+            ]);
+        }
+    }
+
     public function accountDetails()
     {
         return view('shared.profile');

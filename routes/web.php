@@ -96,11 +96,13 @@ Route::group([
     Route::get('/new', [ClientController::class, 'getCreateClient'])->middleware(['observador']);
     Route::post('/new', [ClientController::class, 'createClient'])->middleware(['observador']);
     Route::get('/details/{id}', [ClientController::class, 'clientDetails']);
+    Route::get('/edit/{id}', [ClientController::class, 'editClient'])->middleware(['observador']);
+    Route::put('/edit/{id}', [ClientController::class, 'updateClient'])->middleware(['observador']);
 });
 
 //Ruta para "Mi Cuenta"
 Route::get('/dashboard/mp', [UserController::class, 'accountDetails'])->middleware(DashboardMiddleware::class);
-
+Route::put('/dashboard/mp/edit/{id}', [UserController::class, 'updateUser'])->middleware(DashboardMiddleware::class);
 /*
 *  Grupo de rutas para gestión de cuentas.
 */

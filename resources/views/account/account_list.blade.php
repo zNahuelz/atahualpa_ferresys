@@ -46,8 +46,8 @@
                             <td class="fw-normal fs-6">{{$u->created_at->format('d M Y - h:i A')}}</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="/dashboard/p/edit/{{$u->id}}" class="btn btn-sm btn-warning bg-gradient fw-bold">EDITAR</a>
-                                    <a href="/dashboard/p/details/{{$u->id}}" class="btn btn-sm btn-primary bg-gradient fw-bold">DETALLES</a>
+                                    <a href="/dashboard/a/edit/{{$u->id}}" class="btn btn-sm btn-warning bg-gradient fw-bold">EDITAR</a>
+                                    <a href="/dashboard/a/details/{{$u->id}}" class="btn btn-sm btn-primary bg-gradient fw-bold">DETALLES</a>
                                 </div>
                             </td>
                         </tr>
